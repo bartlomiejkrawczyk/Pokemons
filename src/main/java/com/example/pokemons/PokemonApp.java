@@ -68,11 +68,11 @@ public class PokemonApp {
 
             if (input.trim().length() == 0) return;
 
-            String[] pokemons = input.split(" ");
+            String[] pokemons = input.split("->", 2);
 
-            if (pokemons.length > 3) {
-                String attacker = pokemons[0];
-                String defender = pokemons[2].trim();
+            if (pokemons.length == 2) {
+                String attacker = pokemons[0].trim();
+                String defender = pokemons[1].trim();
 
                 System.out.println(calculateMultiplier(attacker, defender) + "x");
             }
