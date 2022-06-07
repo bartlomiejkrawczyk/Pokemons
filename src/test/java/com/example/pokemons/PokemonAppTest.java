@@ -88,6 +88,30 @@ public class PokemonAppTest {
         assertEquals(output, outputStream.toString());
     }
 
+    @Test
+    public void validationTests() {
+        createNetworkSys();
+
+        String input = "fire -> grass\n" +
+                "fighting -> ice rock\n" +
+                "psychic -> poison dark\n" +
+                "water -> normal\n" +
+                "fire -> rock\n";
+
+        String output = "2x\r\n" +
+                "4x\r\n" +
+                "0x\r\n" +
+                "1x\r\n" +
+                "0.5x\r\n";
+
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
+        handleInput(inputStream, outputStream);
+
+        assertEquals(output, outputStream.toString());
+    }
+
     private void initiateDatabaseWithPokemons() throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
         Constructor<PokemonSimpleDatabase> constructor = PokemonSimpleDatabase.class.getDeclaredConstructor(List.class);
         constructor.setAccessible(true);
