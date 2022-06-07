@@ -23,6 +23,10 @@ public class Pokemon {
         return name;
     }
 
+    public float getDamageMultiplierAgainst(String type) {
+        return damageRelations.getMultiplierAgainst(type);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

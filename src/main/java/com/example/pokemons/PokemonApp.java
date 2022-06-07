@@ -31,7 +31,7 @@ public class PokemonApp {
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(loggingInterceptor)
+//                .addInterceptor(loggingInterceptor)
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .connectTimeout(30, TimeUnit.SECONDS)
@@ -54,26 +54,29 @@ public class PokemonApp {
         interfaceApi = retrofit.create(InterfaceApi.class);
     }
 
+    public static float calculateMultiplier(String attacker, String defender) {
+        PokemonSimpleDatabase db = PokemonSimpleDatabase.getDatabase();
+        Pokemon pokemon = db.getPokemonInformation(attacker);
+
+        return pokemon.getDamageMultiplierAgainst(defender);
+    }
+
     public static void main(String[] args) {
         createNetworkSys();
 
         Scanner scanner = new Scanner(System.in);
 
-        PokemonSimpleDatabase db = PokemonSimpleDatabase.getDatabase();
-
-        while (scanner.hasNext()) {
+        while (scanner.hasNextLine()) {
             String input = scanner.nextLine();
-            if (input.equals("exit")) {
-                return;
-            }
 
-            System.out.println(input);
+            if (input.trim().length() == 0) return;
 
             String[] pokemons = input.split(" ");
 
-            Pokemon pokemon = db.getPokemonInformation(pokemons[0]);
+            String attacker = pokemons[0];
+            String defender = pokemons[2].trim();
 
-            System.out.println(pokemon.getName());
+            System.out.println(calculateMultiplier(attacker, defender) + "x");
         }
 
     }
