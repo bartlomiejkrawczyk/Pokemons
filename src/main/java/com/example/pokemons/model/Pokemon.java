@@ -26,17 +26,4 @@ public class Pokemon {
     public float getDamageMultiplierAgainst(String type) {
         return damageRelations.getMultiplierAgainst(type);
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Pokemon pokemon = (Pokemon) o;
-        return Objects.equals(name, pokemon.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
 }
