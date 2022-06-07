@@ -16,10 +16,9 @@ import java.util.concurrent.TimeUnit;
  *
  * PokemonApp:
  * setups network connection,
- * initializes local database of pokemons
- * starts listening input for pokemons
- * stores information about given type
- * returns damage multiplier of given pokemons
+ * starts listening input for pokemons,
+ * stores information about given type if not present,
+ * returns damage multiplier for given pokemons
  */
 public class PokemonApp {
 
@@ -61,9 +60,7 @@ public class PokemonApp {
         return pokemon.getDamageMultiplierAgainst(defender);
     }
 
-    public static void main(String[] args) {
-        createNetworkSys();
-
+    public static void handleInput() {
         Scanner scanner = new Scanner(System.in);
 
         while (scanner.hasNextLine()) {
@@ -80,6 +77,11 @@ public class PokemonApp {
                 System.out.println(calculateMultiplier(attacker, defender) + "x");
             }
         }
+    }
 
+    public static void main(String[] args) {
+        createNetworkSys();
+
+        handleInput();
     }
 }
