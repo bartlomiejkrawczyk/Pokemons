@@ -2,8 +2,6 @@ package com.example.pokemons.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Objects;
-
 public class Pokemon {
     private final String name;
     @SerializedName("damage_relations")

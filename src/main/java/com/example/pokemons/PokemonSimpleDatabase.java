@@ -5,7 +5,9 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * A pseudo database class
@@ -31,6 +33,11 @@ public class PokemonSimpleDatabase {
 
     private PokemonSimpleDatabase() {
         this.pokemons = new ArrayList<>();
+    }
+
+    private PokemonSimpleDatabase(List<Pokemon> pokemons) {
+        this.pokemons = pokemons;
+        db = this;
     }
 
     public Pokemon getPokemonInformation(String type) {
