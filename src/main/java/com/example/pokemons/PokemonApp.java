@@ -8,6 +8,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -25,7 +28,7 @@ public class PokemonApp {
     private static final String BASE_URL = "https://pokeapi.co/api/v2/";
     public static InterfaceApi interfaceApi;
 
-    private static void createNetworkSys() {
+    public static void createNetworkSys() {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -60,8 +63,10 @@ public class PokemonApp {
         return pokemon.getDamageMultiplierAgainst(defender);
     }
 
-    public static void handleInput() {
-        Scanner scanner = new Scanner(System.in);
+    public static void handleInput(InputStream inputStream, OutputStream outputStream) {
+        Scanner scanner = new Scanner(inputStream);
+
+        PrintWriter printWriter = new PrintWriter(outputStream);
 
         while (scanner.hasNextLine()) {
             String input = scanner.nextLine();
@@ -74,14 +79,17 @@ public class PokemonApp {
                 String attacker = pokemons[0].trim();
                 String defender = pokemons[1].trim();
 
-                System.out.println(calculateMultiplier(attacker, defender) + "x");
+                printWriter.println(calculateMultiplier(attacker, defender) + "x");
+                printWriter.flush();
             }
         }
+
+        printWriter.close();
     }
 
     public static void main(String[] args) {
         createNetworkSys();
 
-        handleInput();
+        handleInput(System.in, System.out);
     }
 }
