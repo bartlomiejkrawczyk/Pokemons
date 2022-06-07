@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Base class for pokemon application
- *
+ * <p>
  * PokemonApp:
  * setups network connection,
  * starts listening input for pokemons,
@@ -79,7 +79,12 @@ public class PokemonApp {
                 String attacker = pokemons[0].trim();
                 String defender = pokemons[1].trim();
 
-                printWriter.println(calculateMultiplier(attacker, defender) + "x");
+                float multiplier = 1f;
+                for (String type : defender.split(" ")) {
+                    multiplier *= calculateMultiplier(attacker, type);
+                }
+
+                printWriter.println(multiplier + "x");
                 printWriter.flush();
             }
         }

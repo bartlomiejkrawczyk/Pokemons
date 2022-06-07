@@ -48,6 +48,21 @@ public class PokemonAppTest {
     }
 
     @Test
+    public void testHandleInputMultipleTypes() throws InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchMethodException {
+        initiateDatabaseWithPokemons();
+
+        String input = "fire -> water fire\nwater -> fire water";
+        String output = "1.0x\r\n1.0x\r\n";
+
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
+        handleInput(inputStream, outputStream);
+
+        assertEquals(output, outputStream.toString());
+    }
+
+    @Test
     public void testHandleInputWithInternetConnection() {
         createNetworkSys();
 
