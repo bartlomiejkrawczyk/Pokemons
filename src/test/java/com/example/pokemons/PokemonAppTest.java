@@ -2,12 +2,14 @@ package com.example.pokemons;
 
 import com.example.pokemons.model.DamageRelations;
 import com.example.pokemons.model.Pokemon;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -19,6 +21,15 @@ import static com.example.pokemons.PokemonApp.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PokemonAppTest {
+
+    @BeforeEach
+    public void resetSingletonDatabase() throws Exception {
+        PokemonSimpleDatabase db = PokemonSimpleDatabase.getDatabase();
+        Field instance = PokemonSimpleDatabase.class.getDeclaredField("db");
+        instance.setAccessible(true);
+        instance.set(db, null);
+    }
+
     @Test
     public void testAdd() {
         assertEquals(5, 2 + 3);
