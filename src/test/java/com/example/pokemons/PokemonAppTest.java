@@ -37,7 +37,7 @@ public class PokemonAppTest {
         initiateDatabaseWithPokemons();
 
         String input = "fire -> water\nwater -> fire";
-        String output = "0.5x\r\n2.0x\r\n";
+        String output = "0.5x\r\n2x\r\n";
 
         InputStream inputStream = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -52,7 +52,7 @@ public class PokemonAppTest {
         initiateDatabaseWithPokemons();
 
         String input = "fire -> water fire\nwater -> fire water";
-        String output = "1.0x\r\n1.0x\r\n";
+        String output = "1x\r\n1x\r\n";
 
         InputStream inputStream = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -67,7 +67,7 @@ public class PokemonAppTest {
         createNetworkSys();
 
         String input = "fire -> water\nwater -> fire";
-        String output = "0.5x\r\n2.0x\r\n";
+        String output = "0.5x\r\n2x\r\n";
 
         InputStream inputStream = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

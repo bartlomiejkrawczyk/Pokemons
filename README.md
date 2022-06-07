@@ -21,9 +21,9 @@ fire -> rock
 
 Example Ouput:
 ```
-2.0x
-1.0x
-1.0x
-1.0x
+2x
+4x
+0x
+1x
 0.5x
 ```

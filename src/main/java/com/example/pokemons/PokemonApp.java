@@ -63,6 +63,13 @@ public class PokemonApp {
         return pokemon.getDamageMultiplierAgainst(defender);
     }
 
+    private static String format(float floatingPointValue) {
+        if (floatingPointValue == (int) floatingPointValue)
+            return String.format("%d", (int) floatingPointValue);
+        else
+            return String.format("%s", floatingPointValue);
+    }
+
     public static void handleInput(InputStream inputStream, OutputStream outputStream) {
         Scanner scanner = new Scanner(inputStream);
 
@@ -84,7 +91,7 @@ public class PokemonApp {
                     multiplier *= calculateMultiplier(attacker, type);
                 }
 
-                printWriter.println(multiplier + "x");
+                printWriter.println(format(multiplier) + "x");
                 printWriter.flush();
             }
         }
