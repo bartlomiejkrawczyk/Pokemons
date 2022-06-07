@@ -1,5 +1,6 @@
 package com.example.pokemons;
 
+import com.example.pokemons.model.Pokemon;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

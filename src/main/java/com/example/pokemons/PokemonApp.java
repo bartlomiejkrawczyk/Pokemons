@@ -1,5 +1,6 @@
 package com.example.pokemons;
 
+import com.example.pokemons.model.Pokemon;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
